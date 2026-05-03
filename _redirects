@@ -1,0 +1,4 @@
+# Chặn truy cập Admin từ public link
+/admin.html    /index.html    403
+/admin/*       /index.html    403
+/admin         /index.html    403

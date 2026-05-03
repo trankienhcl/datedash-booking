@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DateDash Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <!-- Password Gate Script - Chạy trước khi render trang -->
+    <script>
+        (function() {
+            const ADMIN_PASSWORD = 'datedash2026';
+            const SESSION_KEY = 'dd_admin_auth';
+            if (sessionStorage.getItem(SESSION_KEY) !== 'true') {
+                const input = prompt('🔑 Nhập mật khẩu Admin:');
+                if (input !== ADMIN_PASSWORD) {
+                    document.write('<style>body{display:none}</style>');
+                    alert('❌ Sai mật khẩu. Truy cập bị từ chối.');
+                    window.location.replace('index.html');
+                } else {
+                    sessionStorage.setItem(SESSION_KEY, 'true');
+                }
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+                <img src="images/Logo.png" alt="DateDash Logo">
+            </a>
+        </div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active">📊 Dashboard</a>
+            <a href="#" class="nav-item">📅 Bookings</a>
+            <a href="#" class="nav-item">🎁 Packages</a>
+            <a href="#" class="nav-item">👥 Customers</a>
+            <a href="#" class="nav-item">⚙️ Settings</a>
+        </nav>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <main class="main-wrapper">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="page-title">Dashboard Overview</div>
+            <div class="user-profile">
+                <div class="avatar">A</div>
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Total Bookings</div>
+                    <div class="stat-value">124</div>
+                    <div class="stat-trend">↑ 12% from last month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Revenue (MTD)</div>
+                    <div class="stat-value">145.5M ₫</div>
+                    <div class="stat-trend">↑ 8% from last month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Pending Requests</div>
+                    <div class="stat-value">5</div>
+                    <div class="stat-trend" style="color: var(--warning);">Needs attention</div>
+                </div>
+            </div>
+
+            <!-- Recent Bookings Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Recent Booking Requests</h3>
+                    <button class="btn btn-primary">Export CSV</button>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Customer</th>
+                                <th>Package</th>
+                                <th>Date Requested</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#BK-1042</td>
+                                <td><strong>Nguyễn Văn A</strong><br><small>+84 901 234 567</small></td>
+                                <td>Premium Restaurant</td>
+                                <td>Oct 24, 19:00</td>
+                                <td><span class="badge pending">Pending</span></td>
+                                <td><button class="btn btn-outline">Review</button></td>
+                            </tr>
+                            <tr>
+                                <td>#BK-1041</td>
+                                <td><strong>Trần Thị B</strong><br><small>+84 912 345 678</small></td>
+                                <td>Private Experience</td>
+                                <td>Oct 23, 18:00</td>
+                                <td><span class="badge confirmed">Confirmed</span></td>
+                                <td><button class="btn btn-outline">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>#BK-1040</td>
+                                <td><strong>Lê Văn C</strong><br><small>+84 987 654 321</small></td>
+                                <td>Outdoor Picnic</td>
+                                <td>Oct 21, 15:30</td>
+                                <td><span class="badge completed">Completed</span></td>
+                                <td><button class="btn btn-outline">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>#BK-1039</td>
+                                <td><strong>Phạm Thị D</strong><br><small>+84 933 445 566</small></td>
+                                <td>Basic Restaurant</td>
+                                <td>Oct 20, 19:30</td>
+                                <td><span class="badge completed">Completed</span></td>
+                                <td><button class="btn btn-outline">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

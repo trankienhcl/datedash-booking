@@ -1,0 +1,66 @@
+:root {
+    --primary: #9c2742;
+    --primary-light: #e04163;
+    --secondary: #ffdde1;
+    --bg-light: #f9f9f9;
+    --bg-dark: #1e1e2d;
+    --text-main: #333;
+    --text-muted: #888;
+    --white: #ffffff;
+    --border: #eaedf1;
+    --font: 'Inter', sans-serif;
+    --success: #28a745;
+    --warning: #ffc107;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font); background-color: var(--bg-light); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+
+/* Sidebar */
+.sidebar { width: 260px; background-color: var(--white); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+.sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+.sidebar-header img { height: 32px; }
+.nav-menu { padding: 20px 0; flex: 1; overflow-y: auto; }
+.nav-item { padding: 12px 20px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); text-decoration: none; transition: 0.3s; font-weight: 500; }
+.nav-item:hover, .nav-item.active { background-color: var(--secondary); color: var(--primary); border-right: 3px solid var(--primary); }
+
+/* Main Content */
+.main-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.topbar { height: 70px; background-color: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 30px; }
+.page-title { font-size: 1.3rem; font-weight: 600; }
+.user-profile { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+.content { flex: 1; padding: 30px; overflow-y: auto; }
+
+/* Stats Cards */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 30px; }
+.stat-card { background: var(--white); padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); border: 1px solid var(--border); }
+.stat-title { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-value { font-size: 2rem; font-weight: 700; color: var(--primary); }
+.stat-trend { font-size: 0.85rem; color: var(--success); margin-top: 10px; display: flex; align-items: center; gap: 5px; }
+
+/* Tables */
+.card { background: var(--white); border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); border: 1px solid var(--border); overflow: hidden; }
+.card-header { padding: 20px 25px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.card-header h3 { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+.table-responsive { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 15px 25px; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-size: 0.85rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; background-color: #fafbfc; }
+td { font-size: 0.95rem; }
+tr:last-child td { border-bottom: none; }
+tr:hover { background-color: #fafbfc; }
+
+/* Status Badges */
+.badge { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.badge.pending { background-color: #fff3cd; color: #856404; }
+.badge.confirmed { background-color: #d4edda; color: #155724; }
+.badge.completed { background-color: #cce5ff; color: #004085; }
+
+/* Buttons */
+.btn { padding: 8px 15px; border-radius: 6px; font-family: var(--font); font-weight: 500; cursor: pointer; border: none; font-size: 0.85rem; transition: 0.2s; }
+.btn-primary { background-color: var(--primary); color: var(--white); }
+.btn-primary:hover { background-color: var(--primary-light); }
+.btn-outline { background-color: transparent; border: 1px solid var(--border); color: var(--text-main); }
+.btn-outline:hover { background-color: var(--bg-light); }

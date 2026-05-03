@@ -1,0 +1,39 @@
+HƯỚNG DẪN KHỞI CHẠY WEBSITE VÀ TẠO LINK PUBLIC (CÓ CHẶN ADMIN)
+===================================================================
+
+Để khởi chạy trang web và tạo một đường link gửi cho người khác, bạn luôn cần thực hiện 2 bước dưới đây. Mỗi bước sẽ chạy trên một cửa sổ Terminal riêng biệt.
+
+BƯỚC 1: BẬT SERVER CỤC BỘ (HOST ẢO)
+-------------------------------------------------------------------
+1. Mở thư mục web (AEFile) trong VS Code.
+2. Mở Terminal mới (Nhấn tổ hợp phím Ctrl + ~).
+3. Copy và dán dòng lệnh sau rồi ấn Enter:
+--> mở server
+   py server.py
+
+   -> Bạn sẽ thấy thông báo: "🚀 Local Server đang chạy tại: http://localhost:8000"
+   -> LƯU Ý: Giữ nguyên cửa sổ Terminal này, không được tắt.
+
+
+BƯỚC 2: TẠO ĐƯỜNG LINK PUBLIC (GỬI CHO END-USER)
+-------------------------------------------------------------------
+1. Vẫn trong VS Code, bấm vào dấu "+" ở khung Terminal để mở thêm một cửa sổ Terminal thứ 2.
+2. Copy và dán MỘT TRONG HAI lệnh sau rồi ấn Enter:
+--> tạo link public
+   * Cách A (Dùng Pinggy - Có tạo mã QR tiện lợi):
+     ssh -p 443 -R0:127.0.0.1:8000 a.pinggy.io
+     
+   * Cách B (Dùng localhost.run - Tạo link thông thường):
+     ssh -R 80:127.0.0.1:8000 localhost.run
+
+3. Đợi vài giây, hệ thống sẽ trả về một đường link (ví dụ: https://...pinggy.link hoặc https://...lhr.life).
+4. Bạn copy đường link đó và gửi cho người khác là xong!
+
+(Lưu ý: Các file có tên chứa chữ "admin" như admin.html sẽ bị hệ thống tự động chặn (báo lỗi 403) khi người khác truy cập từ đường link trên).
+
+
+CÁCH TẮT WEBSITE:
+-------------------------------------------------------------------
+Khi không cần dùng nữa, bạn hãy bấm vào từng cửa sổ Terminal và ấn tổ hợp phím:
+   Ctrl + C
+(Hệ thống sẽ đóng kết nối và tắt server).

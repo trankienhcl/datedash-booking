@@ -1,0 +1,45 @@
+# ============================================
+# Netlify Configuration for DateDash
+# ============================================
+
+[build]
+  # Đây là static site, không cần build command
+  publish = "."
+
+# --- Bảo vệ trang Admin (thay thế cho server.py) ---
+[[redirects]]
+  from = "/admin.html"
+  to = "/index.html"
+  status = 403
+  force = true
+
+[[redirects]]
+  from = "/admin*"
+  to = "/index.html"
+  status = 403
+  force = true
+
+# --- Security Headers cho toàn bộ trang ---
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# --- Cache tối ưu cho ảnh và assets tĩnh ---
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
