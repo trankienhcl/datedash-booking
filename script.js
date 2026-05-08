@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 const headerOffset = 80;
@@ -57,17 +57,17 @@ function openBookingModal(packageName, price) {
     const modal = document.getElementById('bookingModal');
     const title = document.getElementById('modalPackageName');
     const priceDisplay = document.getElementById('modalPackagePrice');
-    
+
     title.textContent = 'Booking: ' + packageName;
     priceDisplay.textContent = price;
-    
+
     // Reset form state
     document.getElementById('bookingForm').style.display = 'block';
     document.getElementById('bookingSuccess').style.display = 'none';
     document.getElementById('bookingForm').reset();
-    
+
     modal.classList.add('show');
-    
+
     // Prevent background scrolling and page jump (khựng)
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -77,7 +77,7 @@ function openBookingModal(packageName, price) {
 function closeBookingModal() {
     const modal = document.getElementById('bookingModal');
     modal.classList.remove('show');
-    
+
     // allow transition to finish before hiding display
     setTimeout(() => {
         // Restore background scrolling
@@ -88,7 +88,7 @@ function closeBookingModal() {
 
 function submitBooking(event) {
     event.preventDefault();
-    
+
     const submitBtn = event.target.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Đang gửi đơn hàng...';
@@ -113,7 +113,7 @@ function submitBooking(event) {
     };
 
     // Đường link API Web App của Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxzltFpvqPUIgT5DfZ3sKf1H03hlwUooXjS27gXRTAiKamwMEGzeZKe9hMC7BcgMGB3Dw/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwdRzfwkbz66J-7Zo0B3fs-cAFp32qgb99hHoT9HztVYrOvElMRg04_kr_zJPPu5VzG/exec';
 
     // Gửi request tới Google Sheet
     fetch(scriptURL, {
@@ -123,19 +123,19 @@ function submitBooking(event) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(result => {
-        // Show success
-        document.getElementById('bookingForm').style.display = 'none';
-        document.getElementById('bookingSuccess').style.display = 'block';
-        
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    })
-    .catch(error => {
-        console.error('Error!', error.message);
-        alert('Có lỗi xảy ra khi kết nối. Đơn hàng của bạn chưa được gửi. Vui lòng thử lại!');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    });
+        .then(response => response.json())
+        .then(result => {
+            // Show success
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('bookingSuccess').style.display = 'block';
+
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('Có lỗi xảy ra khi kết nối. Đơn hàng của bạn chưa được gửi. Vui lòng thử lại!');
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        });
 }
