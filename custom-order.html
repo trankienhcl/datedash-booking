@@ -206,6 +206,16 @@
         </div>
     </footer>
 
+    <!-- Thank You Modal -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content text-center">
+            <span class="close-btn" onclick="closeThankYouModal()">&times;</span>
+            <h2 style="color: var(--primary-color); margin-bottom: 20px;">Cảm ơn cú click quý giá của bạn!</h2>
+            <p>Đây là một thử nghiệm mô phỏng. Sự quan tâm của bạn giúp chúng tôi hiểu rõ hơn nhu cầu của người dùng để hoàn thiện sản phẩm.</p>
+            <button class="btn btn-secondary mt-3" onclick="closeThankYouModal()">Đóng</button>
+        </div>
+    </div>
+
     <script>
         // Fake data generators for Demo
         function generateRandomAddress(type) {
@@ -328,8 +338,20 @@
                 // Đánh dấu người dùng đã click Direct Connect
                 trackingState.clicked[type] = true;
                 
-                alert(`Redirecting to call ${name} at ${phone}...`);
-                window.location.href = `tel:${phone}`;
+                // Hiển thị modal cảm ơn
+                document.getElementById('thankYouModal').classList.add('show');
+            }
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').classList.remove('show');
+        }
+
+        // Đóng modal khi click ra ngoài
+        window.onclick = function(event) {
+            const modal = document.getElementById('thankYouModal');
+            if (event.target == modal) {
+                closeThankYouModal();
             }
         }
 
