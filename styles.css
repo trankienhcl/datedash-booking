@@ -221,7 +221,7 @@ ul {
 .choice-card ul {
     list-style: none;
     padding-left: 0;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .choice-card li {
