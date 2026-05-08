@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customize Order - DateDash</title>
+    <title>Tự Thiết Kế Buổi Hẹn - DateDash</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -89,25 +89,25 @@
                 <img src="images/Logo.png" alt="DateDash Logo" style="height: 48px; width: auto;">
             </a>
             <nav class="nav-links">
-                <a href="index.html#packages">Packages</a>
-                <a href="index.html#how-it-works">How it works</a>
-                <a href="index.html#testimonials">Reviews</a>
-                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#packages">Gói Dịch Vụ</a>
+                <a href="index.html#how-it-works">Quy Trình</a>
+                <a href="index.html#testimonials">Đánh Giá</a>
+                <a href="index.html#faq">Hỏi Đáp</a>
             </nav>
-            <a href="index.html#packages" class="btn btn-outline">Book Now</a>
+            <a href="index.html#packages" class="btn btn-outline">Đặt Ngay</a>
         </div>
     </header>
 
     <section class="custom-order-section">
-        <h2 class="text-center" style="margin-bottom: 10px;">Build Your Custom Date</h2>
-        <p class="text-center" style="color: var(--text-muted); margin-bottom: 40px;">Select your preferred restaurant, flower shop, and bakery. Contact them directly to arrange the perfect date experience.</p>
+        <h2 class="text-center" style="margin-bottom: 10px;">Tự Thiết Kế Buổi Hẹn</h2>
+        <p class="text-center" style="color: var(--text-muted); margin-bottom: 40px;">Chọn nhà hàng, tiệm hoa và tiệm bánh bạn ưng ý nhất. Liên hệ trực tiếp với họ để sắp xếp một trải nghiệm hẹn hò hoàn hảo.</p>
         
         <!-- Box 1: Restaurant -->
         <div class="custom-card mb-4">
-            <h3>🍽️ 1. Restaurant & Dining</h3>
+            <h3>🍽️ 1. Nhà Hàng & Ăn Uống</h3>
             <div class="form-group">
                 <select id="restaurantSelect" class="form-control" onchange="updateBox('restaurant')">
-                    <option value="">-- Choose a Restaurant --</option>
+                    <option value="">-- Chọn một Nhà Hàng --</option>
                     <option value="r1">The Gourmet Kitchen</option>
                     <option value="r2">Skyline Dining</option>
                     <option value="r3">Cozy Corner Bistro</option>
@@ -123,22 +123,22 @@
             <div id="restaurantInfo" class="vendor-info">
                 <h4 id="restaurantName" style="margin-bottom: 10px;"></h4>
                 <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
-                    📍 <strong style="color: var(--text-main);">Address:</strong> <span id="restaurantAddress"></span><br>
-                    📞 <strong style="color: var(--text-main);">Phone:</strong> <span id="restaurantPhone"></span>
+                    📍 <strong style="color: var(--text-main);">Địa chỉ:</strong> <span id="restaurantAddress"></span><br>
+                    📞 <strong style="color: var(--text-main);">Điện thoại:</strong> <span id="restaurantPhone"></span>
                 </p>
                 <div class="items-list" id="restaurantServices">
                     <!-- Services injected via JS -->
                 </div>
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('restaurant')">📞 Direct Connect</button>
+                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('restaurant')">📞 Gọi Trực Tiếp</button>
             </div>
         </div>
 
         <!-- Box 2: Flower Shop -->
         <div class="custom-card mb-4">
-            <h3>💐 2. Flower Shop</h3>
+            <h3>💐 2. Tiệm Hoa</h3>
             <div class="form-group">
                 <select id="flowerSelect" class="form-control" onchange="updateBox('flower')">
-                    <option value="">-- Choose a Flower Shop --</option>
+                    <option value="">-- Chọn một Tiệm Hoa --</option>
                     <option value="f1">Rose & Petals Boutique</option>
                     <option value="f2">Bloom Station</option>
                     <option value="f3">Flora Design</option>
@@ -154,22 +154,22 @@
             <div id="flowerInfo" class="vendor-info">
                 <h4 id="flowerName" style="margin-bottom: 10px;"></h4>
                 <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
-                    📍 <strong style="color: var(--text-main);">Address:</strong> <span id="flowerAddress"></span><br>
-                    📞 <strong style="color: var(--text-main);">Phone:</strong> <span id="flowerPhone"></span>
+                    📍 <strong style="color: var(--text-main);">Địa chỉ:</strong> <span id="flowerAddress"></span><br>
+                    📞 <strong style="color: var(--text-main);">Điện thoại:</strong> <span id="flowerPhone"></span>
                 </p>
                 <div class="items-list" id="flowerItems">
                     <!-- Flowers injected via JS -->
                 </div>
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('flower')">📞 Direct Connect</button>
+                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('flower')">📞 Gọi Trực Tiếp</button>
             </div>
         </div>
 
         <!-- Box 3: Bakery -->
         <div class="custom-card mb-4">
-            <h3>🎂 3. Bakery & Cake</h3>
+            <h3>🎂 3. Tiệm Bánh</h3>
             <div class="form-group">
                 <select id="bakerySelect" class="form-control" onchange="updateBox('bakery')">
-                    <option value="">-- Choose a Bakery --</option>
+                    <option value="">-- Chọn một Tiệm Bánh --</option>
                     <option value="b1">Sweet Delights</option>
                     <option value="b2">The Cake Boutique</option>
                     <option value="b3">Artisan Bakes</option>
@@ -185,13 +185,13 @@
             <div id="bakeryInfo" class="vendor-info">
                 <h4 id="bakeryName" style="margin-bottom: 10px;"></h4>
                 <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
-                    📍 <strong style="color: var(--text-main);">Address:</strong> <span id="bakeryAddress"></span><br>
-                    📞 <strong style="color: var(--text-main);">Phone:</strong> <span id="bakeryPhone"></span>
+                    📍 <strong style="color: var(--text-main);">Địa chỉ:</strong> <span id="bakeryAddress"></span><br>
+                    📞 <strong style="color: var(--text-main);">Điện thoại:</strong> <span id="bakeryPhone"></span>
                 </p>
                 <div class="items-list" id="bakeryItems">
                     <!-- Cakes injected via JS -->
                 </div>
-                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('bakery')">📞 Direct Connect</button>
+                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('bakery')">📞 Gọi Trực Tiếp</button>
             </div>
         </div>
     </section>
@@ -202,7 +202,7 @@
             <a href="index.html" class="logo">
                 <img src="images/Logo.png" alt="DateDash Logo" style="height: 48px; width: auto; opacity: 0.9;">
             </a>
-            <p>© 2026 DateDash. All rights reserved.</p>
+            <p>© 2026 DateDash. Bảo lưu mọi quyền.</p>
         </div>
     </footer>
 
@@ -226,40 +226,40 @@
 
         const data = {
             restaurant: {
-                r1: { name: "The Gourmet Kitchen", items: [{ name: "Segment", price: "Upscale Casual" }, { name: "Decoration", price: "Small vase of fresh flowers" }, { name: "Perk", price: "Welcome Guests sign" }] },
-                r2: { name: "Skyline Dining", items: [{ name: "Segment", price: "5-Star Rooftop" }, { name: "Decoration", price: "Stylish flowers and petals" }, { name: "Perk", price: "Personal photo display" }] },
-                r3: { name: "Cozy Corner Bistro", items: [{ name: "Segment", price: "Bistro & Cafe" }, { name: "Decoration", price: "Dried flowers, Vintage tablecloth" }, { name: "Perk", price: "Candlelight setup" }] },
-                r4: { name: "The Golden Dragon", items: [{ name: "Segment", price: "Asian Fusion" }, { name: "Decoration", price: "Red lanterns, Bamboo plants" }, { name: "Perk", price: "Private dining room" }] },
-                r5: { name: "Ocean Breeze", items: [{ name: "Segment", price: "Premium Seafood" }, { name: "Decoration", price: "Seashell centerpieces" }, { name: "Perk", price: "Riverview seating" }] },
-                r6: { name: "La Casa Italiana", items: [{ name: "Segment", price: "Authentic Italian" }, { name: "Decoration", price: "Classic checkered table, Candles" }, { name: "Perk", price: "Live violin performance" }] },
-                r7: { name: "Sunset Grill", items: [{ name: "Segment", price: "Luxury Steakhouse" }, { name: "Decoration", price: "Dim lighting, Crystal glasses" }, { name: "Perk", price: "Complimentary wine glasses" }] },
-                r8: { name: "Sakura Sushi Bar", items: [{ name: "Segment", price: "Japanese Omakase" }, { name: "Decoration", price: "Bonsai tree, Origami decor" }, { name: "Perk", price: "Chef counter seating" }] },
-                r9: { name: "El Camino", items: [{ name: "Segment", price: "Modern Mexican" }, { name: "Decoration", price: "Colorful vibrant florals" }, { name: "Perk", price: "Margarita welcoming drinks" }] },
-                r10: { name: "The French Brasserie", items: [{ name: "Segment", price: "Fine Dining French" }, { name: "Decoration", price: "Elegant silver candelabras" }, { name: "Perk", price: "Eiffel tower miniature" }] }
+                r1: { name: "The Gourmet Kitchen", items: [{ name: "Phân khúc", price: "Upscale Casual" }, { name: "Trang trí", price: "Lọ hoa tươi nhỏ" }, { name: "Điểm nhấn", price: "Bảng Welcome đón khách" }] },
+                r2: { name: "Skyline Dining", items: [{ name: "Phân khúc", price: "Nhà hàng 5 sao Rooftop" }, { name: "Trang trí", price: "Hoa và cánh hoa cách điệu" }, { name: "Điểm nhấn", price: "Khung ảnh cá nhân" }] },
+                r3: { name: "Cozy Corner Bistro", items: [{ name: "Phân khúc", price: "Bistro & Cafe" }, { name: "Trang trí", price: "Hoa khô, khăn trải bàn Vintage" }, { name: "Điểm nhấn", price: "Bữa tối dưới ánh nến" }] },
+                r4: { name: "The Golden Dragon", items: [{ name: "Phân khúc", price: "Asian Fusion" }, { name: "Trang trí", price: "Lồng đèn đỏ, cây tre" }, { name: "Điểm nhấn", price: "Phòng ăn riêng tư" }] },
+                r5: { name: "Ocean Breeze", items: [{ name: "Phân khúc", price: "Hải sản cao cấp" }, { name: "Trang trí", price: "Đồ trang trí vỏ sò" }, { name: "Điểm nhấn", price: "Chỗ ngồi view sông" }] },
+                r6: { name: "La Casa Italiana", items: [{ name: "Phân khúc", price: "Ý truyền thống" }, { name: "Trang trí", price: "Bàn cờ caro cổ điển, Nến" }, { name: "Điểm nhấn", price: "Biểu diễn Violin trực tiếp" }] },
+                r7: { name: "Sunset Grill", items: [{ name: "Phân khúc", price: "Steakhouse sang trọng" }, { name: "Trang trí", price: "Ánh sáng mờ, ly pha lê" }, { name: "Điểm nhấn", price: "Tặng kèm ly rượu vang" }] },
+                r8: { name: "Sakura Sushi Bar", items: [{ name: "Phân khúc", price: "Nhật Bản Omakase" }, { name: "Trang trí", price: "Cây bonsai, Origami" }, { name: "Điểm nhấn", price: "Ghế ngồi quầy Chef" }] },
+                r9: { name: "El Camino", items: [{ name: "Phân khúc", price: "Mexico hiện đại" }, { name: "Trang trí", price: "Hoa sặc sỡ" }, { name: "Điểm nhấn", price: "Đồ uống Margarita chào mừng" }] },
+                r10: { name: "The French Brasserie", items: [{ name: "Phân khúc", price: "Pháp Fine Dining" }, { name: "Trang trí", price: "Chân nến bạc thanh lịch" }, { name: "Điểm nhấn", price: "Mô hình tháp Eiffel thu nhỏ" }] }
             },
             flower: {
-                f1: { name: "Rose & Petals Boutique", items: [{ name: "Classic Red Rose Bouquet", price: "500,000 ₫" }, { name: "Pink Tulip Mix", price: "700,000 ₫" }, { name: "Baby's Breath Simple", price: "300,000 ₫" }] },
-                f2: { name: "Bloom Station", items: [{ name: "Sunflower Bundle", price: "400,000 ₫" }, { name: "Premium White Orchids", price: "1,200,000 ₫" }, { name: "Mixed Pastel Roses", price: "650,000 ₫" }] },
-                f3: { name: "Flora Design", items: [{ name: "Luxury Peony Box", price: "1,500,000 ₫" }, { name: "Hydrangea Basket", price: "800,000 ₫" }, { name: "Daisy Meadow", price: "450,000 ₫" }] },
-                f4: { name: "Lily's Garden", items: [{ name: "Stargazer Lily Bouquet", price: "750,000 ₫" }, { name: "Calla Lily Elegance", price: "900,000 ₫" }] },
-                f5: { name: "The Orchid House", items: [{ name: "Phalaenopsis Pot", price: "1,800,000 ₫" }, { name: "Dendrobium Stems", price: "550,000 ₫" }] },
-                f6: { name: "Sunflower Valley", items: [{ name: "Giant Sunflower Wrap", price: "350,000 ₫" }, { name: "Rustic Wildflower Mix", price: "500,000 ₫" }] },
-                f7: { name: "Spring Blossoms", items: [{ name: "Cherry Blossom Branches", price: "1,000,000 ₫" }, { name: "Spring Mix Basket", price: "600,000 ₫" }] },
-                f8: { name: "Floral Expressions", items: [{ name: "100 Roses Heart", price: "3,000,000 ₫" }, { name: "Carnation Delight", price: "400,000 ₫" }] },
-                f9: { name: "The Violet Room", items: [{ name: "Lavender Bundle", price: "500,000 ₫" }, { name: "Purple Iris Bouquet", price: "650,000 ₫" }] },
-                f10: { name: "Daisy's Dream", items: [{ name: "White Gerbera Box", price: "450,000 ₫" }, { name: "Colorful Daisy Mix", price: "350,000 ₫" }] }
+                f1: { name: "Rose & Petals Boutique", items: [{ name: "Bó Hồng Đỏ Cổ Điển", price: "500,000 ₫" }, { name: "Bó Tulip Hồng Mix", price: "700,000 ₫" }, { name: "Bó Hoa Baby Đơn Giản", price: "300,000 ₫" }] },
+                f2: { name: "Bloom Station", items: [{ name: "Bó Hoa Hướng Dương", price: "400,000 ₫" }, { name: "Lan Hồ Điệp Trắng Cao Cấp", price: "1,200,000 ₫" }, { name: "Hồng Pastel Mix", price: "650,000 ₫" }] },
+                f3: { name: "Flora Design", items: [{ name: "Hộp Hoa Mẫu Đơn", price: "1,500,000 ₫" }, { name: "Giỏ Hoa Cẩm Tú Cầu", price: "800,000 ₫" }, { name: "Hoa Cúc Họa Mi", price: "450,000 ₫" }] },
+                f4: { name: "Lily's Garden", items: [{ name: "Bó Hoa Lily Stargazer", price: "750,000 ₫" }, { name: "Hoa Rum Thanh Lịch", price: "900,000 ₫" }] },
+                f5: { name: "The Orchid House", items: [{ name: "Chậu Lan Hồ Điệp", price: "1,800,000 ₫" }, { name: "Cành Dendrobium", price: "550,000 ₫" }] },
+                f6: { name: "Sunflower Valley", items: [{ name: "Bó Hướng Dương Lớn", price: "350,000 ₫" }, { name: "Hoa Đồng Nội Rustic", price: "500,000 ₫" }] },
+                f7: { name: "Spring Blossoms", items: [{ name: "Cành Hoa Anh Đào", price: "1,000,000 ₫" }, { name: "Giỏ Hoa Mùa Xuân", price: "600,000 ₫" }] },
+                f8: { name: "Floral Expressions", items: [{ name: "Trái Tim 100 Đóa Hồng", price: "3,000,000 ₫" }, { name: "Bó Hoa Cẩm Chướng", price: "400,000 ₫" }] },
+                f9: { name: "The Violet Room", items: [{ name: "Bó Hoa Oải Hương", price: "500,000 ₫" }, { name: "Bó Hoa Diên Vĩ Tím", price: "650,000 ₫" }] },
+                f10: { name: "Daisy's Dream", items: [{ name: "Hộp Hoa Đồng Tiền Trắng", price: "450,000 ₫" }, { name: "Hoa Cúc Đa Sắc", price: "350,000 ₫" }] }
             },
             bakery: {
-                b1: { name: "Sweet Delights", items: [{ name: "Tiramisu Cake (16cm)", price: "350,000 ₫" }, { name: "Red Velvet Heart", price: "450,000 ₫" }] },
-                b2: { name: "The Cake Boutique", items: [{ name: "Matcha Cheesecake", price: "400,000 ₫" }, { name: "Strawberry Fruit Tart", price: "500,000 ₫" }] },
-                b3: { name: "Artisan Bakes", items: [{ name: "Earl Grey Chiffon", price: "380,000 ₫" }, { name: "Custom Photo Cake", price: "600,000 ₫" }] },
-                b4: { name: "Golden Crust Bakery", items: [{ name: "Opera Cake", price: "550,000 ₫" }, { name: "Croquembouche Mini", price: "800,000 ₫" }] },
-                b5: { name: "Sugar & Spice", items: [{ name: "Carrot Cake (18cm)", price: "420,000 ₫" }, { name: "Cinnamon Swirl Cake", price: "380,000 ₫" }] },
-                b6: { name: "The Chocolate Truffle", items: [{ name: "Triple Chocolate Mousse", price: "480,000 ₫" }, { name: "Dark Choc Lava (Set of 2)", price: "250,000 ₫" }] },
-                b7: { name: "Patisserie Maison", items: [{ name: "Macaron Tower (15 pcs)", price: "650,000 ₫" }, { name: "Lemon Meringue Tart", price: "400,000 ₫" }] },
-                b8: { name: "Vanilla Bean Cafe", items: [{ name: "Classic Vanilla Sponge", price: "300,000 ₫" }, { name: "Vanilla Bean Panna Cotta", price: "350,000 ₫" }] },
-                b9: { name: "Berry Sweet Cakes", items: [{ name: "Mixed Berry Charlotte", price: "520,000 ₫" }, { name: "Blueberry Cheesecake", price: "450,000 ₫" }] },
-                b10: { name: "Heavenly Pastries", items: [{ name: "Black Forest Cake", price: "460,000 ₫" }, { name: "Profiterole Stack", price: "550,000 ₫" }] }
+                b1: { name: "Sweet Delights", items: [{ name: "Bánh Tiramisu (16cm)", price: "350,000 ₫" }, { name: "Bánh Trái Tim Red Velvet", price: "450,000 ₫" }] },
+                b2: { name: "The Cake Boutique", items: [{ name: "Cheesecake Trà Xanh", price: "400,000 ₫" }, { name: "Tart Trái Cây Dâu Tây", price: "500,000 ₫" }] },
+                b3: { name: "Artisan Bakes", items: [{ name: "Chiffon Bá Tước", price: "380,000 ₫" }, { name: "Bánh In Ảnh Tùy Chỉnh", price: "600,000 ₫" }] },
+                b4: { name: "Golden Crust Bakery", items: [{ name: "Bánh Opera", price: "550,000 ₫" }, { name: "Tháp Bánh Croquembouche Mini", price: "800,000 ₫" }] },
+                b5: { name: "Sugar & Spice", items: [{ name: "Bánh Cà Rốt (18cm)", price: "420,000 ₫" }, { name: "Bánh Cuộn Quế", price: "380,000 ₫" }] },
+                b6: { name: "The Chocolate Truffle", items: [{ name: "Mousse 3 Lớp Chocolate", price: "480,000 ₫" }, { name: "Lava Choc Đen (Set 2 bánh)", price: "250,000 ₫" }] },
+                b7: { name: "Patisserie Maison", items: [{ name: "Tháp Macaron (15 cái)", price: "650,000 ₫" }, { name: "Tart Chanh Meringue", price: "400,000 ₫" }] },
+                b8: { name: "Vanilla Bean Cafe", items: [{ name: "Bánh Bông Lan Vanilla", price: "300,000 ₫" }, { name: "Panna Cotta Vanilla", price: "350,000 ₫" }] },
+                b9: { name: "Berry Sweet Cakes", items: [{ name: "Charlotte Dâu Rừng", price: "520,000 ₫" }, { name: "Cheesecake Việt Quất", price: "450,000 ₫" }] },
+                b10: { name: "Heavenly Pastries", items: [{ name: "Bánh Rừng Đen", price: "460,000 ₫" }, { name: "Tháp Bánh Choux", price: "550,000 ₫" }] }
             }
         };
 

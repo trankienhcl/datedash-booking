@@ -58,7 +58,7 @@ function openBookingModal(packageName, price) {
     const title = document.getElementById('modalPackageName');
     const priceDisplay = document.getElementById('modalPackagePrice');
 
-    title.textContent = 'Booking: ' + packageName;
+    title.textContent = 'Đặt gói: ' + packageName;
     priceDisplay.textContent = price;
 
     // Reset form state

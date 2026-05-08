@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DateDash Admin Dashboard</title>
+    <title>DateDash - Trang Quản Trị</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
     <!-- Password Gate Script - Chạy trước khi render trang -->
@@ -34,11 +34,11 @@
             </a>
         </div>
         <nav class="nav-menu">
-            <a href="#" class="nav-item active">📊 Dashboard</a>
-            <a href="#" class="nav-item">📅 Bookings</a>
-            <a href="#" class="nav-item">🎁 Packages</a>
-            <a href="#" class="nav-item">👥 Customers</a>
-            <a href="#" class="nav-item">⚙️ Settings</a>
+            <a href="#" class="nav-item active">📊 Tổng Quan</a>
+            <a href="#" class="nav-item">📅 Đơn Đặt</a>
+            <a href="#" class="nav-item">🎁 Gói Dịch Vụ</a>
+            <a href="#" class="nav-item">👥 Khách Hàng</a>
+            <a href="#" class="nav-item">⚙️ Cài Đặt</a>
         </nav>
     </aside>
 
@@ -46,7 +46,7 @@
     <main class="main-wrapper">
         <!-- Topbar -->
         <header class="topbar">
-            <div class="page-title">Dashboard Overview</div>
+            <div class="page-title">Tổng Quan Hệ Thống</div>
             <div class="user-profile">
                 <div class="avatar">A</div>
                 <span>Admin User</span>
@@ -58,72 +58,72 @@
             <!-- Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-title">Total Bookings</div>
+                    <div class="stat-title">Tổng Số Đơn</div>
                     <div class="stat-value">124</div>
-                    <div class="stat-trend">↑ 12% from last month</div>
+                    <div class="stat-trend">↑ 12% so với tháng trước</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Revenue (MTD)</div>
+                    <div class="stat-title">Doanh Thu (Tháng này)</div>
                     <div class="stat-value">145.5M ₫</div>
-                    <div class="stat-trend">↑ 8% from last month</div>
+                    <div class="stat-trend">↑ 8% so với tháng trước</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-title">Pending Requests</div>
+                    <div class="stat-title">Yêu Cầu Chờ Xử Lý</div>
                     <div class="stat-value">5</div>
-                    <div class="stat-trend" style="color: var(--warning);">Needs attention</div>
+                    <div class="stat-trend" style="color: var(--warning);">Cần chú ý</div>
                 </div>
             </div>
 
             <!-- Recent Bookings Table -->
             <div class="card">
                 <div class="card-header">
-                    <h3>Recent Booking Requests</h3>
-                    <button class="btn btn-primary">Export CSV</button>
+                    <h3>Yêu Cầu Đặt Chỗ Gần Đây</h3>
+                    <button class="btn btn-primary">Xuất CSV</button>
                 </div>
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Customer</th>
-                                <th>Package</th>
-                                <th>Date Requested</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Mã Đơn</th>
+                                <th>Khách Hàng</th>
+                                <th>Gói Dịch Vụ</th>
+                                <th>Ngày Đặt</th>
+                                <th>Trạng Thái</th>
+                                <th>Thao Tác</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>#BK-1042</td>
                                 <td><strong>Nguyễn Văn A</strong><br><small>+84 901 234 567</small></td>
-                                <td>Premium Restaurant</td>
+                                <td>Nhà Hàng Cao Cấp</td>
                                 <td>Oct 24, 19:00</td>
-                                <td><span class="badge pending">Pending</span></td>
-                                <td><button class="btn btn-outline">Review</button></td>
+                                <td><span class="badge pending">Chờ Duyệt</span></td>
+                                <td><button class="btn btn-outline">Xem Xét</button></td>
                             </tr>
                             <tr>
                                 <td>#BK-1041</td>
                                 <td><strong>Trần Thị B</strong><br><small>+84 912 345 678</small></td>
-                                <td>Private Experience</td>
+                                <td>Trải Nghiệm Riêng Tư</td>
                                 <td>Oct 23, 18:00</td>
-                                <td><span class="badge confirmed">Confirmed</span></td>
-                                <td><button class="btn btn-outline">View</button></td>
+                                <td><span class="badge confirmed">Đã Xác Nhận</span></td>
+                                <td><button class="btn btn-outline">Xem</button></td>
                             </tr>
                             <tr>
                                 <td>#BK-1040</td>
                                 <td><strong>Lê Văn C</strong><br><small>+84 987 654 321</small></td>
-                                <td>Outdoor Picnic</td>
+                                <td>Dã Ngoại Ngoài Trời</td>
                                 <td>Oct 21, 15:30</td>
-                                <td><span class="badge completed">Completed</span></td>
-                                <td><button class="btn btn-outline">View</button></td>
+                                <td><span class="badge completed">Hoàn Thành</span></td>
+                                <td><button class="btn btn-outline">Xem</button></td>
                             </tr>
                             <tr>
                                 <td>#BK-1039</td>
                                 <td><strong>Phạm Thị D</strong><br><small>+84 933 445 566</small></td>
-                                <td>Basic Restaurant</td>
+                                <td>Nhà Hàng Cơ Bản</td>
                                 <td>Oct 20, 19:30</td>
-                                <td><span class="badge completed">Completed</span></td>
-                                <td><button class="btn btn-outline">View</button></td>
+                                <td><span class="badge completed">Hoàn Thành</span></td>
+                                <td><button class="btn btn-outline">Xem</button></td>
                             </tr>
                         </tbody>
                     </table>
