@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Order - DateDash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .custom-order-section {
+            padding: 120px 20px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .custom-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+        .restaurant-info {
+            background: var(--info-bg);
+            border: 1px solid var(--info-border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+        }
+        .restaurant-info.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .info-item {
+            margin-bottom: 10px;
+        }
+        .info-item strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .addons-list {
+            margin-top: 20px;
+        }
+        .addon-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        select.form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+        select.form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/Logo.png" alt="DateDash Logo" style="height: 48px; width: auto;">
+            </a>
+            <nav class="nav-links">
+                <a href="index.html#packages">Packages</a>
+                <a href="custom.html">Customize Order</a>
+                <a href="index.html#how-it-works">How it works</a>
+                <a href="index.html#testimonials">Reviews</a>
+                <a href="index.html#faq">FAQ</a>
+            </nav>
+            <a href="index.html#packages" class="btn btn-outline">Book Now</a>
+        </div>
+    </header>
+
+    <section class="custom-order-section">
+        <div class="custom-card">
+            <h2 class="text-center" style="margin-bottom: 10px;">Customize Your Order</h2>
+            <p class="text-center" style="color: var(--text-muted); margin-bottom: 30px;">Build your perfect date experience by selecting a restaurant and optional add-ons.</p>
+            
+            <form id="customOrderForm">
+                <div class="form-group">
+                    <label for="restaurantSelect">Select Restaurant</label>
+                    <select id="restaurantSelect" class="form-control" onchange="updateRestaurantInfo()">
+                        <option value="">-- Choose a Restaurant --</option>
+                        <option value="gourmet">The Gourmet Kitchen</option>
+                        <option value="skyline">Skyline Dining</option>
+                        <option value="cozy">Cozy Corner Bistro</option>
+                        <option value="ocean">Ocean View Lounge</option>
+                    </select>
+                </div>
+
+                <div id="restaurantInfo" class="restaurant-info">
+                    <h3 id="resName" style="margin-bottom: 5px; font-size: 1.2rem;"></h3>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">
+                        📍 <span id="resAddress"></span><br>
+                        📞 <span id="resPhone"></span>
+                    </p>
+                    <hr style="border: 0; border-top: 1px solid var(--info-border); margin: 15px 0;">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Restaurant Segment</strong>
+                            <span id="resSegment"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Decoration Included</strong>
+                            <span id="resDecor"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="addons-list" style="display: none;" id="addonsSection">
+                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">Optional Add-ons</h4>
+                    <div class="addon-item">
+                        <input type="checkbox" id="addon1" value="Premium Cake">
+                        <label for="addon1">Premium Cake (+300,000 VND)</label>
+                    </div>
+                    <div class="addon-item">
+                        <input type="checkbox" id="addon2" value="Fresh Flower Bouquet">
+                        <label for="addon2">Fresh Flower Bouquet (+500,000 VND)</label>
+                    </div>
+                    <div class="addon-item">
+                        <input type="checkbox" id="addon3" value="Polaroid Photographer">
+                        <label for="addon3">Polaroid Photographer (1 hour, +400,000 VND)</label>
+                    </div>
+                    <div class="addon-item">
+                        <input type="checkbox" id="addon4" value="Live Violinist">
+                        <label for="addon4">Live Violinist (30 mins, +800,000 VND)</label>
+                    </div>
+                </div>
+
+                <div class="action-buttons" style="display: none;" id="actionButtons">
+                    <button type="button" class="btn btn-primary" onclick="submitCustomOrder()" style="flex: 1;">Book Now</button>
+                    <button type="button" class="btn btn-secondary" onclick="directConnect()" style="flex: 1;">Direct Connect</button>
+                </div>
+            </form>
+            
+            <div id="customSuccess" class="alert info" style="display: none; margin-top: 20px;">
+                <strong>🎉 Success!</strong> Your custom order has been sent to our system. The restaurant team will contact you soon to confirm the details.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/Logo.png" alt="DateDash Logo" style="height: 48px; width: auto; opacity: 0.9;">
+            </a>
+            <p>© 2026 DateDash. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const restaurants = {
+            "gourmet": {
+                name: "The Gourmet Kitchen",
+                segment: "Upscale Casual",
+                decor: "Small vase of fresh flowers, Welcome Guests sign"
+            },
+            "skyline": {
+                name: "Skyline Dining",
+                segment: "5-Star Rooftop",
+                decor: "Stylish flowers and petals, Personal photo display"
+            },
+            "cozy": {
+                name: "Cozy Corner Bistro",
+                segment: "Bistro & Cafe",
+                decor: "Candlelight setup, Dried flowers, Vintage tablecloth"
+            },
+            "ocean": {
+                name: "Ocean View Lounge",
+                segment: "Premium Riverside",
+                decor: "Elegant table setting, Romantic string lights, Welcome sign"
+            }
+        };
+
+        function generateRandomAddress() {
+            const streets = ["Le Loi", "Nguyen Hue", "Pasteur", "Hai Ba Trung", "Le Duan", "Nam Ky Khoi Nghia"];
+            const districts = ["District 1", "District 3", "District 2", "Phu Nhuan District"];
+            const num = Math.floor(Math.random() * 200) + 1;
+            const street = streets[Math.floor(Math.random() * streets.length)];
+            const district = districts[Math.floor(Math.random() * districts.length)];
+            return `${num} ${street}, ${district}, HCMC`;
+        }
+
+        function generateRandomPhone() {
+            const prefix = ["090", "098", "091", "093", "089"];
+            const p = prefix[Math.floor(Math.random() * prefix.length)];
+            const body = Math.floor(Math.random() * 9000000) + 1000000;
+            return `${p} ${body.toString().substring(0,3)} ${body.toString().substring(3)}`;
+        }
+
+        function updateRestaurantInfo() {
+            const select = document.getElementById('restaurantSelect');
+            const val = select.value;
+            const infoBox = document.getElementById('restaurantInfo');
+            const addonsSection = document.getElementById('addonsSection');
+            const actionButtons = document.getElementById('actionButtons');
+
+            if (val && restaurants[val]) {
+                const r = restaurants[val];
+                document.getElementById('resName').textContent = r.name;
+                
+                // Generate random data for demo
+                const randomAddress = generateRandomAddress();
+                const randomPhone = generateRandomPhone();
+                
+                document.getElementById('resAddress').textContent = randomAddress;
+                document.getElementById('resPhone').textContent = randomPhone;
+                document.getElementById('resSegment').textContent = r.segment;
+                document.getElementById('resDecor').textContent = r.decor;
+                
+                // Save phone for Direct Connect
+                infoBox.dataset.phone = randomPhone.replace(/\s+/g, '');
+                
+                infoBox.classList.add('show');
+                addonsSection.style.display = 'block';
+                actionButtons.style.display = 'flex';
+            } else {
+                infoBox.classList.remove('show');
+                addonsSection.style.display = 'none';
+                actionButtons.style.display = 'none';
+            }
+        }
+
+        function submitCustomOrder() {
+            const btn = document.querySelector('button[onclick="submitCustomOrder()"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            // Simulate API request delay
+            setTimeout(() => {
+                document.getElementById('customOrderForm').style.display = 'none';
+                document.getElementById('customSuccess').style.display = 'block';
+            }, 1000);
+        }
+
+        function directConnect() {
+            const phone = document.getElementById('restaurantInfo').dataset.phone;
+            if (phone) {
+                alert(`Redirecting to call: ${phone}`);
+                window.location.href = `tel:${phone}`;
+            }
+        }
+    </script>
+</body>
+</html>
