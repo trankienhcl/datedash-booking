@@ -263,6 +263,19 @@
             }
         };
 
+        const trackingState = {
+            selections: {
+                restaurant: '',
+                flower: '',
+                bakery: ''
+            },
+            clicked: {
+                restaurant: false,
+                flower: false,
+                bakery: false
+            }
+        };
+
         function updateBox(type) {
             const select = document.getElementById(`${type}Select`);
             const val = select.value;
@@ -272,6 +285,9 @@
                 const vendorData = data[type][val];
                 
                 document.getElementById(`${type}Name`).textContent = vendorData.name;
+                
+                // Cập nhật tracking state với lựa chọn cuối cùng
+                trackingState.selections[type] = vendorData.name;
                 
                 // Generate random data for demo if not already stored on the option
                 const optionEl = select.options[select.selectedIndex];
@@ -300,6 +316,7 @@
                 infoBox.classList.add('show');
             } else {
                 infoBox.classList.remove('show');
+                trackingState.selections[type] = '';
             }
         }
 
@@ -308,10 +325,40 @@
             const phone = infoBox.dataset.phone;
             const name = document.getElementById(`${type}Name`).textContent;
             if (phone) {
+                // Đánh dấu người dùng đã click Direct Connect
+                trackingState.clicked[type] = true;
+                
                 alert(`Redirecting to call ${name} at ${phone}...`);
                 window.location.href = `tel:${phone}`;
             }
         }
+
+        // Bắt sự kiện người dùng rời khỏi trang
+        window.addEventListener('beforeunload', () => {
+            // Chỉ gửi data nếu người dùng đã ấn Direct Connect ở cả 3 box
+            if (trackingState.clicked.restaurant && trackingState.clicked.flower && trackingState.clicked.bakery) {
+                const data = {
+                    type: 'custom',
+                    restaurant: trackingState.selections.restaurant,
+                    flower: trackingState.selections.flower,
+                    bakery: trackingState.selections.bakery
+                };
+
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbxzltFpvqPUIgT5DfZ3sKf1H03hlwUooXjS27gXRTAiKamwMEGzeZKe9hMC7BcgMGB3Dw/exec';
+                
+                // Sử dụng sendBeacon hoặc fetch với keepalive để đảm bảo request được gửi đi ngay cả khi trang đóng
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(scriptURL, JSON.stringify(data));
+                } else {
+                    fetch(scriptURL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(data),
+                        keepalive: true
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>

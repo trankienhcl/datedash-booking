@@ -103,6 +103,7 @@ function submitBooking(event) {
     const notes = document.getElementById('notes').value;
 
     const data = {
+        type: 'non-custom',
         packageName: packageName,
         price: price,
         name: name,
@@ -112,7 +113,7 @@ function submitBooking(event) {
     };
 
     // Đường link API Web App của Google Apps Script
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwdRzfwkbz66J-7Zo0B3fs-cAFp32qgb99hHoT9HztVYrOvElMRg04_kr_zJPPu5VzG/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxzltFpvqPUIgT5DfZ3sKf1H03hlwUooXjS27gXRTAiKamwMEGzeZKe9hMC7BcgMGB3Dw/exec';
 
     // Gửi request tới Google Sheet
     fetch(scriptURL, {
