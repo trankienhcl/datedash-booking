@@ -9,25 +9,33 @@
     <style>
         .custom-order-section {
             padding: 120px 20px 60px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         .custom-card {
             background: var(--white);
             border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
             border: 1px solid var(--border-color);
+            margin-bottom: 30px;
         }
-        .restaurant-info {
-            background: var(--info-bg);
-            border: 1px solid var(--info-border);
+        .custom-card h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .vendor-info {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
             padding: 20px;
             border-radius: 12px;
             margin-top: 20px;
             display: none;
         }
-        .restaurant-info.show {
+        .vendor-info.show {
             display: block;
             animation: fadeIn 0.3s ease;
         }
@@ -35,33 +43,23 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .items-list {
             margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
         }
-        .info-item {
-            margin-bottom: 10px;
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
         }
-        .info-item strong {
-            display: block;
+        .item-name {
+            font-weight: 500;
+        }
+        .item-price {
             color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        .addons-list {
-            margin-top: 20px;
-        }
-        .addon-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            gap: 10px;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            font-weight: 600;
         }
         select.form-control {
             width: 100%;
@@ -75,14 +73,11 @@
             outline: none;
             border-color: var(--primary-color);
         }
-        
-        @media (max-width: 768px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-            .action-buttons {
-                flex-direction: column;
-            }
+        .mt-3 {
+            margin-top: 20px;
+        }
+        .mb-4 {
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -104,69 +99,78 @@
     </header>
 
     <section class="custom-order-section">
-        <div class="custom-card">
-            <h2 class="text-center" style="margin-bottom: 10px;">Customize Your Order</h2>
-            <p class="text-center" style="color: var(--text-muted); margin-bottom: 30px;">Build your perfect date experience by selecting a restaurant and optional add-ons.</p>
-            
-            <form id="customOrderForm">
-                <div class="form-group">
-                    <label for="restaurantSelect">Select Restaurant</label>
-                    <select id="restaurantSelect" class="form-control" onchange="updateRestaurantInfo()">
-                        <option value="">-- Choose a Restaurant --</option>
-                        <option value="gourmet">The Gourmet Kitchen</option>
-                        <option value="skyline">Skyline Dining</option>
-                        <option value="cozy">Cozy Corner Bistro</option>
-                        <option value="ocean">Ocean View Lounge</option>
-                    </select>
+        <h2 class="text-center" style="margin-bottom: 10px;">Build Your Custom Date</h2>
+        <p class="text-center" style="color: var(--text-muted); margin-bottom: 40px;">Select your preferred restaurant, flower shop, and bakery. Contact them directly to arrange the perfect date experience.</p>
+        
+        <!-- Box 1: Restaurant -->
+        <div class="custom-card mb-4">
+            <h3>🍽️ 1. Restaurant & Dining</h3>
+            <div class="form-group">
+                <select id="restaurantSelect" class="form-control" onchange="updateBox('restaurant')">
+                    <option value="">-- Choose a Restaurant --</option>
+                    <option value="gourmet">The Gourmet Kitchen</option>
+                    <option value="skyline">Skyline Dining</option>
+                    <option value="cozy">Cozy Corner Bistro</option>
+                </select>
+            </div>
+            <div id="restaurantInfo" class="vendor-info">
+                <h4 id="restaurantName" style="margin-bottom: 10px;"></h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
+                    📍 <strong style="color: var(--text-main);">Address:</strong> <span id="restaurantAddress"></span><br>
+                    📞 <strong style="color: var(--text-main);">Phone:</strong> <span id="restaurantPhone"></span>
+                </p>
+                <div class="items-list" id="restaurantServices">
+                    <!-- Services injected via JS -->
                 </div>
+                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('restaurant')">📞 Direct Connect</button>
+            </div>
+        </div>
 
-                <div id="restaurantInfo" class="restaurant-info">
-                    <h3 id="resName" style="margin-bottom: 5px; font-size: 1.2rem;"></h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">
-                        📍 <span id="resAddress"></span><br>
-                        📞 <span id="resPhone"></span>
-                    </p>
-                    <hr style="border: 0; border-top: 1px solid var(--info-border); margin: 15px 0;">
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <strong>Restaurant Segment</strong>
-                            <span id="resSegment"></span>
-                        </div>
-                        <div class="info-item">
-                            <strong>Decoration Included</strong>
-                            <span id="resDecor"></span>
-                        </div>
-                    </div>
+        <!-- Box 2: Flower Shop -->
+        <div class="custom-card mb-4">
+            <h3>💐 2. Flower Shop</h3>
+            <div class="form-group">
+                <select id="flowerSelect" class="form-control" onchange="updateBox('flower')">
+                    <option value="">-- Choose a Flower Shop --</option>
+                    <option value="rose">Rose & Petals Boutique</option>
+                    <option value="bloom">Bloom Station</option>
+                    <option value="flora">Flora Design</option>
+                </select>
+            </div>
+            <div id="flowerInfo" class="vendor-info">
+                <h4 id="flowerName" style="margin-bottom: 10px;"></h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
+                    📍 <strong style="color: var(--text-main);">Address:</strong> <span id="flowerAddress"></span><br>
+                    📞 <strong style="color: var(--text-main);">Phone:</strong> <span id="flowerPhone"></span>
+                </p>
+                <div class="items-list" id="flowerItems">
+                    <!-- Flowers injected via JS -->
                 </div>
+                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('flower')">📞 Direct Connect</button>
+            </div>
+        </div>
 
-                <div class="addons-list" style="display: none;" id="addonsSection">
-                    <h4 style="margin-bottom: 15px; color: var(--primary-color);">Optional Add-ons</h4>
-                    <div class="addon-item">
-                        <input type="checkbox" id="addon1" value="Premium Cake">
-                        <label for="addon1">Premium Cake (+300,000 VND)</label>
-                    </div>
-                    <div class="addon-item">
-                        <input type="checkbox" id="addon2" value="Fresh Flower Bouquet">
-                        <label for="addon2">Fresh Flower Bouquet (+500,000 VND)</label>
-                    </div>
-                    <div class="addon-item">
-                        <input type="checkbox" id="addon3" value="Polaroid Photographer">
-                        <label for="addon3">Polaroid Photographer (1 hour, +400,000 VND)</label>
-                    </div>
-                    <div class="addon-item">
-                        <input type="checkbox" id="addon4" value="Live Violinist">
-                        <label for="addon4">Live Violinist (30 mins, +800,000 VND)</label>
-                    </div>
+        <!-- Box 3: Bakery -->
+        <div class="custom-card mb-4">
+            <h3>🎂 3. Bakery & Cake</h3>
+            <div class="form-group">
+                <select id="bakerySelect" class="form-control" onchange="updateBox('bakery')">
+                    <option value="">-- Choose a Bakery --</option>
+                    <option value="sweet">Sweet Delights</option>
+                    <option value="boutique">The Cake Boutique</option>
+                    <option value="artisan">Artisan Bakes</option>
+                </select>
+            </div>
+            <div id="bakeryInfo" class="vendor-info">
+                <h4 id="bakeryName" style="margin-bottom: 10px;"></h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">
+                    📍 <strong style="color: var(--text-main);">Address:</strong> <span id="bakeryAddress"></span><br>
+                    📞 <strong style="color: var(--text-main);">Phone:</strong> <span id="bakeryPhone"></span>
+                </p>
+                <div class="items-list" id="bakeryItems">
+                    <!-- Cakes injected via JS -->
                 </div>
-
-                <div class="action-buttons" style="display: none;" id="actionButtons">
-                    <button type="button" class="btn btn-primary" onclick="submitCustomOrder()" style="flex: 1;">Book Now</button>
-                    <button type="button" class="btn btn-secondary" onclick="directConnect()" style="flex: 1;">Direct Connect</button>
-                </div>
-            </form>
-            
-            <div id="customSuccess" class="alert info" style="display: none; margin-top: 20px;">
-                <strong>🎉 Success!</strong> Your custom order has been sent to our system. The restaurant team will contact you soon to confirm the details.
+                <button type="button" class="btn btn-secondary mt-3 w-100" onclick="directConnect('bakery')">📞 Direct Connect</button>
             </div>
         </div>
     </section>
@@ -182,30 +186,8 @@
     </footer>
 
     <script>
-        const restaurants = {
-            "gourmet": {
-                name: "The Gourmet Kitchen",
-                segment: "Upscale Casual",
-                decor: "Small vase of fresh flowers, Welcome Guests sign"
-            },
-            "skyline": {
-                name: "Skyline Dining",
-                segment: "5-Star Rooftop",
-                decor: "Stylish flowers and petals, Personal photo display"
-            },
-            "cozy": {
-                name: "Cozy Corner Bistro",
-                segment: "Bistro & Cafe",
-                decor: "Candlelight setup, Dried flowers, Vintage tablecloth"
-            },
-            "ocean": {
-                name: "Ocean View Lounge",
-                segment: "Premium Riverside",
-                decor: "Elegant table setting, Romantic string lights, Welcome sign"
-            }
-        };
-
-        function generateRandomAddress() {
+        // Fake data generators for Demo
+        function generateRandomAddress(type) {
             const streets = ["Le Loi", "Nguyen Hue", "Pasteur", "Hai Ba Trung", "Le Duan", "Nam Ky Khoi Nghia"];
             const districts = ["District 1", "District 3", "District 2", "Phu Nhuan District"];
             const num = Math.floor(Math.random() * 200) + 1;
@@ -221,56 +203,130 @@
             return `${p} ${body.toString().substring(0,3)} ${body.toString().substring(3)}`;
         }
 
-        function updateRestaurantInfo() {
-            const select = document.getElementById('restaurantSelect');
-            const val = select.value;
-            const infoBox = document.getElementById('restaurantInfo');
-            const addonsSection = document.getElementById('addonsSection');
-            const actionButtons = document.getElementById('actionButtons');
+        const data = {
+            restaurant: {
+                gourmet: {
+                    name: "The Gourmet Kitchen",
+                    items: [
+                        { name: "Segment", price: "Upscale Casual" },
+                        { name: "Decoration", price: "Small vase of fresh flowers" },
+                        { name: "Perk", price: "Welcome Guests sign" }
+                    ]
+                },
+                skyline: {
+                    name: "Skyline Dining",
+                    items: [
+                        { name: "Segment", price: "5-Star Rooftop" },
+                        { name: "Decoration", price: "Stylish flowers and petals" },
+                        { name: "Perk", price: "Personal photo display" }
+                    ]
+                },
+                cozy: {
+                    name: "Cozy Corner Bistro",
+                    items: [
+                        { name: "Segment", price: "Bistro & Cafe" },
+                        { name: "Decoration", price: "Dried flowers, Vintage tablecloth" },
+                        { name: "Perk", price: "Candlelight setup" }
+                    ]
+                }
+            },
+            flower: {
+                rose: {
+                    name: "Rose & Petals Boutique",
+                    items: [
+                        { name: "Classic Red Rose Bouquet", price: "500,000 ₫" },
+                        { name: "Pink Tulip Mix", price: "700,000 ₫" },
+                        { name: "Baby's Breath Simple", price: "300,000 ₫" }
+                    ]
+                },
+                bloom: {
+                    name: "Bloom Station",
+                    items: [
+                        { name: "Sunflower Bundle", price: "400,000 ₫" },
+                        { name: "Premium White Orchids", price: "1,200,000 ₫" },
+                        { name: "Mixed Pastel Roses", price: "650,000 ₫" }
+                    ]
+                },
+                flora: {
+                    name: "Flora Design",
+                    items: [
+                        { name: "Luxury Peony Box", price: "1,500,000 ₫" },
+                        { name: "Hydrangea Basket", price: "800,000 ₫" }
+                    ]
+                }
+            },
+            bakery: {
+                sweet: {
+                    name: "Sweet Delights",
+                    items: [
+                        { name: "Tiramisu Cake (16cm)", price: "350,000 ₫" },
+                        { name: "Red Velvet Heart", price: "450,000 ₫" }
+                    ]
+                },
+                boutique: {
+                    name: "The Cake Boutique",
+                    items: [
+                        { name: "Matcha Cheesecake", price: "400,000 ₫" },
+                        { name: "Strawberry Fruit Tart", price: "500,000 ₫" },
+                        { name: "Chocolate Fudge", price: "450,000 ₫" }
+                    ]
+                },
+                artisan: {
+                    name: "Artisan Bakes",
+                    items: [
+                        { name: "Earl Grey Chiffon", price: "380,000 ₫" },
+                        { name: "Custom Photo Cake", price: "600,000 ₫" }
+                    ]
+                }
+            }
+        };
 
-            if (val && restaurants[val]) {
-                const r = restaurants[val];
-                document.getElementById('resName').textContent = r.name;
+        function updateBox(type) {
+            const select = document.getElementById(`${type}Select`);
+            const val = select.value;
+            const infoBox = document.getElementById(`${type}Info`);
+
+            if (val && data[type][val]) {
+                const vendorData = data[type][val];
                 
-                // Generate random data for demo
-                const randomAddress = generateRandomAddress();
-                const randomPhone = generateRandomPhone();
+                document.getElementById(`${type}Name`).textContent = vendorData.name;
                 
-                document.getElementById('resAddress').textContent = randomAddress;
-                document.getElementById('resPhone').textContent = randomPhone;
-                document.getElementById('resSegment').textContent = r.segment;
-                document.getElementById('resDecor').textContent = r.decor;
+                // Generate random data for demo if not already stored on the option
+                const optionEl = select.options[select.selectedIndex];
+                if (!optionEl.dataset.phone) {
+                    optionEl.dataset.address = generateRandomAddress();
+                    optionEl.dataset.phone = generateRandomPhone();
+                }
+
+                document.getElementById(`${type}Address`).textContent = optionEl.dataset.address;
+                document.getElementById(`${type}Phone`).textContent = optionEl.dataset.phone;
                 
-                // Save phone for Direct Connect
-                infoBox.dataset.phone = randomPhone.replace(/\s+/g, '');
+                // Save phone to box dataset for direct connect
+                infoBox.dataset.phone = optionEl.dataset.phone.replace(/\s+/g, '');
+
+                // Populate items
+                const itemsContainer = document.getElementById(`${type === 'restaurant' ? 'restaurantServices' : type + 'Items'}`);
+                itemsContainer.innerHTML = '';
                 
+                vendorData.items.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'item-row';
+                    row.innerHTML = `<span class="item-name">${item.name}</span><span class="item-price">${item.price}</span>`;
+                    itemsContainer.appendChild(row);
+                });
+
                 infoBox.classList.add('show');
-                addonsSection.style.display = 'block';
-                actionButtons.style.display = 'flex';
             } else {
                 infoBox.classList.remove('show');
-                addonsSection.style.display = 'none';
-                actionButtons.style.display = 'none';
             }
         }
 
-        function submitCustomOrder() {
-            const btn = document.querySelector('button[onclick="submitCustomOrder()"]');
-            const originalText = btn.textContent;
-            btn.textContent = 'Sending...';
-            btn.disabled = true;
-
-            // Simulate API request delay
-            setTimeout(() => {
-                document.getElementById('customOrderForm').style.display = 'none';
-                document.getElementById('customSuccess').style.display = 'block';
-            }, 1000);
-        }
-
-        function directConnect() {
-            const phone = document.getElementById('restaurantInfo').dataset.phone;
+        function directConnect(type) {
+            const infoBox = document.getElementById(`${type}Info`);
+            const phone = infoBox.dataset.phone;
+            const name = document.getElementById(`${type}Name`).textContent;
             if (phone) {
-                alert(`Redirecting to call: ${phone}`);
+                alert(`Redirecting to call ${name} at ${phone}...`);
                 window.location.href = `tel:${phone}`;
             }
         }
