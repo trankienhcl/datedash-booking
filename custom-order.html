@@ -357,8 +357,8 @@
 
         // Bắt sự kiện người dùng rời khỏi trang
         window.addEventListener('beforeunload', () => {
-            // Chỉ gửi data nếu người dùng đã ấn Direct Connect ở cả 3 box
-            if (trackingState.clicked.restaurant && trackingState.clicked.flower && trackingState.clicked.bakery) {
+            // Chỉ gửi data nếu người dùng đã ấn Direct Connect ở ít nhất 1 box
+            if (trackingState.clicked.restaurant || trackingState.clicked.flower || trackingState.clicked.bakery) {
                 const data = {
                     type: 'custom',
                     restaurant: trackingState.selections.restaurant,
